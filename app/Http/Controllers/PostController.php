@@ -59,6 +59,12 @@ class PostController extends Controller
 
         return view('admin.posts.index', ['posts' => $posts]);
     }
+   
+   // Edit the post
+    public function edit(Post $post)
+    {
+       return view('admin.posts.edit', ['post' => $post]);
+    }
 
     //destroy post by id
     public function destroy(Post $post, Request $request)
