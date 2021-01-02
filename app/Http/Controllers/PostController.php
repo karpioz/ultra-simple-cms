@@ -55,6 +55,16 @@ class PostController extends Controller
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
+    //destroy post by id
+    public function destroy(Post $post, Request $request)
+    {
+        $post->delete();
+
+        $request->session()->flash('message', 'Post successfuly deleted');
+
+        return back();
+    }
+
 
  
 }
