@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function(){
     
     Route::delete('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy');
     
+    Route::patch('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'update'])->name('post.update');
+    
     Route::get('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
     
 

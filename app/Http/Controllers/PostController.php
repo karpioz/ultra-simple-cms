@@ -66,6 +66,34 @@ class PostController extends Controller
        return view('admin.posts.edit', ['post' => $post]);
     }
 
+    // Store the edited post
+    public function update(Post $post)
+    {
+            // Form Validation
+        $data = request()->validate([
+            'post_title' => 'required',
+            'post_body' => 'required',
+            'post_image' => 'file'
+        ]);
+
+        if(request('post_image')) {
+            $data['post_image'] = request('post_image')->store('uploads');
+            $post->post_image = $data['post_image'];
+        }
+
+        $post->post_title = $data['post_title'];
+        $post->post_body = $data['post_body'];
+
+        $post->update();
+
+        // adding flash message
+        session()->flash('message', 'Post Has Been Updated');
+        session()->flash('class', 'success');
+
+        // redirecting to show all posts page
+        return redirect()->route('post.index');
+    }
+
     //destroy post by id
     public function destroy(Post $post, Request $request)
     {
@@ -75,7 +103,5 @@ class PostController extends Controller
 
         return back();
     }
-
-
  
 }

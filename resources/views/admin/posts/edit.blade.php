@@ -3,8 +3,10 @@
 
     <h1>Edit Post</h1>
    
-            <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
+
                 <div class="form-group">
                     <label class="col-form-label" for="title">Post Title</label>
                 <input
