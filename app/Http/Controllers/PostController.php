@@ -46,5 +46,15 @@ class PostController extends Controller
     }
 
 
+    // Show all posts by logged user in user panel
+    public function index()
+    {
+
+        $posts = Post::all();
+
+        return view('admin.posts.index', ['posts' => $posts]);
+    }
+
+
  
 }
