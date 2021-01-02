@@ -42,7 +42,12 @@ class PostController extends Controller
 
         auth()->user()->post()->create($data);
 
-        return back();
+        // adding flash message
+        session()->flash('message', 'New Post Added to the Database');
+        session()->flash('class', 'success');
+
+        // redirecting to show all posts page
+        return redirect()->route('post.index');
     }
 
 
