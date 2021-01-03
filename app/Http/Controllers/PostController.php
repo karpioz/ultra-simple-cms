@@ -27,6 +27,9 @@ class PostController extends Controller
     // storing the post
     public function store()
     {
+        // authorization policy
+        $this->authorize('create', Post::class);
+
         // dd(request()->all());
 
         // Form Validation
@@ -55,7 +58,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::all();
+        $posts = auth()->user()->post;
 
         return view('admin.posts.index', ['posts' => $posts]);
     }
@@ -84,6 +87,8 @@ class PostController extends Controller
         $post->post_title = $data['post_title'];
         $post->post_body = $data['post_body'];
 
+        $this->authorize('update', $post);
+
         $post->update();
 
         // adding flash message
@@ -97,6 +102,8 @@ class PostController extends Controller
     //destroy post by id
     public function destroy(Post $post, Request $request)
     {
+        $this->authorize('delete', $post);
+
         $post->delete();
 
         $request->session()->flash('message', 'Post successfuly deleted');
