@@ -59,4 +59,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    // checking for assigned roles
+    public function userHasRole($role_name)
+    {
+        foreach($this->roles as $role){
+            if($role_name == $role->name)
+            return true;
+        }
+        session()->flash('message', 'No permissions to view this page');
+        return false;
+    }
 }

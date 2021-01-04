@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Ultra-Simple-CMS Admin Dashboard</title>
+  <title>Ultra-Simple-CMS Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{route('admin.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Admin Dashboard</span></a>
       </li>
 
       <!-- Divider -->
@@ -298,7 +298,11 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Vincent Vega</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  @if(Auth::check())
+                  {{auth()->user()->name}}
+                  @endif
+                </span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -345,7 +349,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; ultra-simple-CMS 2021</span>
           </div>
         </div>
       </footer>
@@ -375,7 +379,10 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <form action="{{ url('/logout')}}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
         </div>
       </div>
     </div>
