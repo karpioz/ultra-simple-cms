@@ -6,13 +6,15 @@
 
     <h1 class="h3 mb-4 text-gray-800">Admin Dashboard</h1>
 
-    @endif
-    @if(Session::has('message'))
+    @else
+
     <div class="alert alert-danger" role="alert">
         <h2>You Don't have permission to view this page</h2>
     </div>
-    @endif
 
+    @endif
+    
+    
     @endsection
 
 </x-admin-main>

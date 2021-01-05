@@ -5,17 +5,7 @@
         <div class="row mt-3">
             <div class="col-sm-6 mt-3">
                 <h4 class="mb-3 text-danger">Update User Information</h4>
-                <!-- Success Message when post is deleted-->
-                @if(Session::has('message'))
-
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>All good!!!</strong> {{ Session::get('message') }}.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                @endif
+               
                 <form class="mt-3" action="{{route('users.update', $user)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

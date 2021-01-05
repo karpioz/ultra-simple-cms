@@ -7,12 +7,22 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+    // Get all users
+    public function index()
+    {
+        $users = User::all();
+
+        return view('admin.users.index', ['users' => $users]);
+    }
+
+    // Display single user
     public function show(User $user)
     {
         return view('admin.users.user-profile', ['user' => $user]);
     }
 
-    // update the user data
+    // update the user
     public function update(User $user)
     {
         // Form Validation
@@ -28,9 +38,6 @@ class UserController extends Controller
         }
 
         $user->update($data);
-
-        // adding flash message
-        session()->flash('message', 'User Has Been Updated');
 
         return back();
     }
