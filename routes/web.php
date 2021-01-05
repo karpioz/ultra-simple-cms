@@ -37,5 +37,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/posts/{post}', [App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
     
     Route::get('/admin/users/{user}/profile', [App\Http\Controllers\UserController::class, 'show'])->name('users.user-profile.show');
+    Route::put('/admin/users/{user}/update', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
  
 });

@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'photo'
     ];
 
     /**
@@ -76,4 +77,13 @@ class User extends Authenticatable
         session()->flash('message', 'No permissions to view this page');
         return false;
     }
+
+    // fix for display images allow to use http(s) and local images
+    public function getPhotoAttribute($value)
+     {
+        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
+            return $value;
+        }
+        return asset('storage/' . $value);
+        }
 }
