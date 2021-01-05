@@ -41,4 +41,14 @@ class UserController extends Controller
 
         return back();
     }
+
+    //destroy user
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        session()->flash('user-destroyed', 'User Has been deleted');
+
+        return back();
+    }
 }

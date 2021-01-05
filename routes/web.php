@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function(){
     
     Route::put('/admin/users/{user}/update', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 
-    Route::delete('/admin/{user}/', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/admin/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
     
     Route::get('/admin/users/', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
  

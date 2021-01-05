@@ -3,6 +3,17 @@
 
     <h1>All Users</h1>
 
+    @if(Session::has('user-destroyed'))
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>All good!!!</strong> {{ Session::get('user-destroyed') }}.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    @endif
+
     <!-- DataTables Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -42,7 +53,7 @@
                       <td><img height="75px" src="{{asset($user->photo)}}" alt=""></td>
                       <td>{{$user->created_at->diffForHumans()}}</td>
                       <td>
-                        <form action="#" method="POST">
+                        <form action="{{route('user.destroy', $user->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">
