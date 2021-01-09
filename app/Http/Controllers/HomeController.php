@@ -25,8 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // display all post
+        //$posts = Post::all();
 
-        $posts = Post::all();
+        // display 5 post starting from latest
+        $posts = Post::latest()->paginate(5);
 
         return view('home', ['posts' => $posts]);
     }

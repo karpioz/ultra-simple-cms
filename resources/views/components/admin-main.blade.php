@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Ultra-Simple-CMS Dashboard</title>
+  <title>Ultra Simple CMS | Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -70,6 +70,8 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
+      <!-- Can be viewed only by Admins -->
+      @if(auth()->user()->userHasRole('Admin'))
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
           <i class="fas fa-fw fa-user-cog"></i>
@@ -82,7 +84,8 @@
           </div>
         </div>
       </li>
-
+      @endif
+      
       <!-- Divider -->
       <hr class="sidebar-divider">
 
