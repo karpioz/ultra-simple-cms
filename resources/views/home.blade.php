@@ -10,7 +10,13 @@
 
           @foreach($posts as $post)
           <div class="card mb-4">
+            
+            @if($post->post_image == 'https://karpinski-dev.duckdns.org/storage')
+            <img class="card-img-top" src="https://karpinski-dev.duckdns.org/storage/img/dummy_pic.jpg" alt="Card image cap">
+            @else
             <img class="card-img-top" src="{{ $post->post_image }}" alt="Card image cap">
+            @endif
+        
             <div class="card-body">
               <h2 class="card-title">{{ $post->post_title }}</h2>
               <p class="card-text">{{ Str::limit($post->post_body, '75', '...') }}</p>

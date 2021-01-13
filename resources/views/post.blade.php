@@ -19,8 +19,11 @@
     <hr>
 
     <!-- Preview Image -->
+    @if($post->post_image == 'https://karpinski-dev.duckdns.org/storage')
+    <img class="img-fluid rounded" src="https://karpinski-dev.duckdns.org/storage/img/dummy_pic.jpg" alt="">
+    @else
     <img class="img-fluid rounded" src="{{ $post->post_image }}" alt="">
-
+    @endif
     <hr>
 
     <!-- Post Content -->

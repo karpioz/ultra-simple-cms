@@ -125,8 +125,12 @@
                   {{auth()->user()->name}}
                   @endif
                 </span>
+                @if(auth()->user()->photo == 'https://karpinski-dev.duckdns.org/storage')
+                <img class="img-profile rounded-circle" src="https://karpinski-dev.duckdns.org/storage/img/avatar.png">
+                @else
                 <img class="img-profile rounded-circle" src="{{auth()->user()->photo}}">
               </a>
+              @endif
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{{ route('users.user-profile.show', auth()->user()) }}">
