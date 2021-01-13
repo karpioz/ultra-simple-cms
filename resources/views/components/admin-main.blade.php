@@ -43,7 +43,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{route('admin.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Admin Dashboard</span></a>
+          <span>Dashboard</span></a>
       </li>
 
       <!-- Divider -->
@@ -80,41 +80,13 @@
         <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">User Tools:</h6>
+            <a class="collapse-item" href="{{ route('users.user-profile.show', auth()->user()) }}">Edit Profile</a>
             <a class="collapse-item" href="{{ route('users.index') }}">Show All Users</a>
           </div>
         </div>
       </li>
       @endif
-      
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="/login">Login</a>
-            <a class="collapse-item" href="/register">Register</a>
-            
-            <!--<div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item active" href="blank.html">Blank Page</a>
-            -->
-          </div>
-        </div>
-      </li>
-
+    
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

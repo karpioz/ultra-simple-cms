@@ -60,7 +60,6 @@
                           <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>
                         </form>
-                        <a class="btn btn-warning" href="{{ route('users.user-profile.show', auth()->user()) }}"><i class="fa fa-pen-square" aria-hidden="true"></i></a>
                       </td>
                   </tr>
 

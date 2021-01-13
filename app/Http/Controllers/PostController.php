@@ -15,6 +15,7 @@ class PostController extends Controller
 
         return view('post', ['post' => $post]);
     }
+
     
     public function create()
     {
@@ -43,22 +44,32 @@ class PostController extends Controller
             $data['post_image'] = request('post_image')->store('uploads');
         }
 
-        auth()->user()->post()->create($data);
-
-        // adding flash message
-        session()->flash('message', 'New Post Added to the Database');
-        session()->flash('class', 'success');
+        if(auth()->user()->post()->create($data)) {
+             // adding flash message
+            session()->flash('message', 'New Post Added to the Database');
+            session()->flash('class', 'success');
 
         // redirecting to show all posts page
         return redirect()->route('post.index');
+        } else {
+            session()->flash('message', 'Something went wrong... :(');
+            return redirect()->back();
+        }
+        
+
+       
     }
 
 
     // Show all posts by logged user in user panel
     public function index()
     {
-
-        $posts = auth()->user()->post;
+        if(auth()->user()->userHasRole('Admin')){
+            $posts = Post::all();
+        }
+        else {
+            $posts = auth()->user()->post;
+        }
 
         return view('admin.posts.index', ['posts' => $posts]);
     }
@@ -102,8 +113,9 @@ class PostController extends Controller
     //destroy post by id
     public function destroy(Post $post, Request $request)
     {
+        if(!auth()->user()->userHasRole('Admin')){
         $this->authorize('delete', $post);
-
+        }
         $post->delete();
 
         $request->session()->flash('message', 'Post successfuly deleted');
